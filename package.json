@@ -11,7 +11,7 @@
     "start-server": "cd server && node index.js",
     "start-socket": "cd socket && node index.js",
     "build": "npm run install-server && npm run install-client && npm run install-socket && npm run build-client",
-    "start": "node server/index.js"
+    "start": "cd server && node index.js"
   },
   "keywords": [],
   "author": "",

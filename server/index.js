@@ -1,6 +1,10 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
+import dotenv from "dotenv";
+
+// Load environment variables
+dotenv.config();
 
 import Connection from "./database/db.js";
 import Route from "./routes/route.js";
