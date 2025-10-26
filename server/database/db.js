@@ -16,7 +16,11 @@ const mongooseOptions = {
 
 // Get MongoDB URL based on environment
 const getMongoURL = () => {
-  // Use Docker MongoDB URL if running in container, else use local MongoDB URL
+  // If MONGODB_URI is provided (production/Render), use it
+  if (process.env.MONGODB_URI) {
+    return process.env.MONGODB_URI;
+  }
+  // For local development or Docker
   return process.env.DOCKER_ENV
     ? `mongodb://${DB_USERNAME}:${DB_PASSWORD}@mongodb:27017/?authSource=admin`
     : `mongodb://${DB_USERNAME}:${DB_PASSWORD}@localhost:27017/?authSource=admin`;
@@ -24,7 +28,8 @@ const getMongoURL = () => {
 
 const Connection = async () => {
   try {
-    if (!DB_USERNAME || !DB_PASSWORD) {
+    // Check for MONGODB_URI first (production)
+    if (!process.env.MONGODB_URI && (!DB_USERNAME || !DB_PASSWORD)) {
       throw new Error(
         "MongoDB credentials not provided in environment variables"
       );

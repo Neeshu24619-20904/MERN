@@ -1,8 +1,14 @@
 import {Server} from 'socket.io';
+import dotenv from 'dotenv';
 
-const io = new Server(9000, {
+dotenv.config();
+
+const PORT = process.env.PORT || 9000;
+const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:3000";
+
+const io = new Server(PORT, {
     cors: {
-        origin: "http://localhost:3000"
+        origin: CLIENT_URL
     }
 })
 

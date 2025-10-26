@@ -1,0 +1,22 @@
+{
+  "name": "whatsapp-clone",
+  "version": "1.0.0",
+  "description": "WhatsApp Clone MERN Stack",
+  "main": "index.js",
+  "scripts": {
+    "install-server": "cd server && npm install",
+    "install-client": "cd client && npm install",
+    "install-socket": "cd socket && npm install",
+    "build-client": "cd client && npm run build",
+    "start-server": "cd server && node index.js",
+    "start-socket": "cd socket && node index.js",
+    "build": "npm run install-server && npm run install-client && npm run install-socket && npm run build-client",
+    "start": "node server/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
