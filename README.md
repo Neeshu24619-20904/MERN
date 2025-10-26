@@ -13,6 +13,7 @@ Its build using MERN stack and uses <a href='https://socket.io/'>socket.io</a> f
 - [x] Responsive upto a limit.
 - [x] And most importantly 😎 Feels just like whatsapp-web (or Desktop app).
 
+
 #### ⚙ Tools and Technologies used
 
 ###### Frontend
