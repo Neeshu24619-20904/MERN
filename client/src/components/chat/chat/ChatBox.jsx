@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { Box } from "@mui/material";
 
 import { AccountContext } from "../../../context/AccountProvider";
-import {getConversation} from '../../../service/api.js'
+import { getConversation } from '../../../service/api.js'
 
 // components 
 import ChatHeader from "./ChatHeader";
