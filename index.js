@@ -1,25 +1,25 @@
-// This file helps Render find the correct entry point
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-import { spawn } from 'child_process';
+import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
+import dotenv from "dotenv";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// Load environment variables
+dotenv.config();
 
-// Start the server
-const serverProcess = spawn('node', ['server/index.js'], {
-  stdio: 'inherit',
-  cwd: __dirname
-});
+import Connection from "./server/database/db.js";
+import Route from "./server/routes/route.js";
 
-serverProcess.on('error', (err) => {
-  console.error('Failed to start server:', err);
-  process.exit(1);
-});
+const app = express();
 
-serverProcess.on('exit', (code) => {
-  if (code !== 0) {
-    console.error(`Server process exited with code ${code}`);
-    process.exit(code);
-  }
+app.use(cors());
+app.use(bodyParser.json({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use("/", Route);
+
+const PORT = process.env.PORT || 8000;
+
+Connection();
+
+app.listen(PORT, () => {
+  console.log(`server is running on port ${PORT}`);
 });
